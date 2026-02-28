@@ -1,0 +1,38 @@
+<script id="v-logic">
+(function() {
+    // ♢ Velvet: Modular Loader Function
+    async function loadMod(modName) {
+        const user = 'developanidea';
+        const repo = 'advancedscriptinjection';
+        const url = `https://raw.githubusercontent.com/${user}/${repo}/main/mods/${modName}.js?t=${Date.now()}`;
+        
+        try {
+            const response = await fetch(url);
+            if (!response.ok) throw new Error('Mod not found on GitHub');
+            const code = await response.text();
+            
+            // Execute the mod in the page context
+            const script = document.createElement('script');
+            script.textContent = code;
+            document.head.appendChild(script);
+            script.remove(); // Clean up the DOM after running
+            
+            console.log(`♢ Velvet: ${modName} successfully loaded!`);
+        } catch (e) {
+            alert(`♢ Velvet Error: Could not load ${modName}\n${e.message}`);
+        }
+    }
+
+    // --- Button Mappings ---
+    // Optimizations Tab
+    document.getElementById('v-btn-opt-fps').onclick = () => loadMod('fpsboost');
+    
+    // Fun Things Tab
+    document.getElementById('v-btn-fun-rainbow').onclick = () => loadMod('rainbow');
+    
+    // General Things Tab
+    document.getElementById('v-btn-gen-edit').onclick = () => loadMod('editmode');
+
+    // ... (Keep your existing Close/Minimize/Drag logic here)
+})();
+</script>
