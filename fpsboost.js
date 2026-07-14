@@ -1,5 +1,5 @@
 (function() {
-    // Disable heavy CSS animations and shadows to boost performance
+    // DISABLE CSS THAT HEAVY
     const style = document.createElement('style');
     style.innerHTML = `
         * { 
@@ -10,5 +10,5 @@
         }
     `;
     document.head.appendChild(style);
-    alert('♢ Optimization: FPS Boost Enabled!');
+    alert('fpsboost working');
 })();
